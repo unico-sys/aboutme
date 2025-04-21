@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+
+:root {
+    --text-color: #ffffff;
+    --text-color-darker: rgba(255, 255, 255, 0.5);
+    --bg-color: #000000;
+    --container-color: rgba(255, 255, 255, 0.2);
+    --container-border: 2px solid rgba(255, 255, 255, 0.1);
+    --avatar-border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::selection {
+    background: #ffffff;
+    color: #000000;
+}
+
+body {
+    font-family: 'Satoshi', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none; /* Hide default cursor */
+}
+
+/* Custom Cursor */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: 0.1s;
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.6;
+    transform: translate(-50%, -50%);
+    transition: 0.15s ease-out;
+}
+
+.cursor.active {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.cursor-follower.active {
+    border-color: var(--text-color);
+}
+
+/* Enter Overlay */
+.enter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color);
+    z-index: 9997;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://r2.guns.lol/fedc2955-9f2e-427d-9d61-8a527202d2ee.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+.enter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.enter-text {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--text-color);
+}
+
+/* Snowflakes Effect */
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Snowflakes nel contenuto principale */
+.main-snowflakes {
+    z-index: 5;
+    position: fixed;
+    display: none; /* Nascosti inizialmente, verranno mostrati con JS */
+}
+
+.snowflake {
+    position: absolute;
+    color: var(--text-color);
+    font-size: 1.5em;
+    font-family: Arial, sans-serif;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    animation: snowfall linear infinite;
+}
+
+.snowflake:nth-child(1) {
+    left: 10%;
+    animation-duration: 15s;
+    animation-delay: 0s;
+}
+
+.snowflake:nth-child(2) {
+    left: 20%;
+    animation-duration: 12s;
+    animation-delay: 1s;
+}
+
+.snowflake:nth-child(3) {
+    left: 30%;
+    animation-duration: 13s;
+    animation-delay: 2s;
+}
+
+.snowflake:nth-child(4) {
+    left: 40%;
+    animation-duration: 14s;
+    animation-delay: 0s;
+}
+
+.snowflake:nth-child(5) {
+    left: 50%;
+    animation-duration: 15s;
+    animation-delay: 3s;
+}
+
+.snowflake:nth-child(6) {
+    left: 60%;
+    animation-duration: 16s;
+    animation-delay: 2s;
+}
+
+.snowflake:nth-child(7) {
+    left: 70%;
+    animation-duration: 12s;
+    animation-delay: 1s;
+}
+
+.snowflake:nth-child(8) {
+    left: 80%;
+    animation-duration: 14s;
+    animation-delay: 0s;
+}
+
+.snowflake:nth-child(9) {
+    left: 90%;
+    animation-duration: 15s;
+    animation-delay: 1s;
+}
+
+.snowflake:nth-child(10) {
+    left: 25%;
+    animation-duration: 13s;
+    animation-delay: 3s;
+}
+
+.snowflake:nth-child(11) {
+    left: 65%;
+    animation-duration: 14s;
+    animation-delay: 2s;
+}
+
+.snowflake:nth-child(12) {
+    left: 85%;
+    animation-duration: 15s;
+    animation-delay: 1s;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Main Content */
+.main-content {
+    display: none; /* Hidden by default, shown after click */
+    min-height: 100vh;
+    padding: 2rem;
+    position: relative; /* Necessario per il posizionamento dei fiocchi di neve */
+}
+
+.profile-container {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 35px 15px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(10px);
+    background-image: linear-gradient(25deg, rgba(255, 255, 255, 0), rgba(99, 99, 99, 0));
+    position: relative;
+    z-index: 10; /* Assicura che il profilo sia sopra i fiocchi di neve */
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.avatar-container {
+    margin-bottom: 1.5rem;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: var(--avatar-border);
+    object-fit: cover;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.username {
+    font-family: 'Array', sans-serif;
+    font-weight: 600;
+    font-size: 39.5px;
+    margin-bottom: 0.5rem;
+    text-shadow: 0px 0px 16.5px var(--text-color);
+    background-image: url(https://assets.guns.lol/sparkle_white.gif);
+}
+
+.description {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 570;
+    font-size: 19px;
+    color: var(--text-color);
+}
+
+.view-counter {
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+}
+
+.view-counter span {
+    font-weight: 550;
+    font-size: 14px;
+    color: var(--text-color-darker);
+}
+
+.view-counter i {
+    margin-right: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        width: 90%;
+    }
+    
+    .username {
+        font-size: 32px;
+    }
+    
+    .description {
+        font-size: 16px;
+    }
+} 
