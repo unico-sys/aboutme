@@ -62,9 +62,45 @@
                     <h1 class="username">Unico</h1>
                     <h3 class="description">Ex owner @EmeraldSQ</h3>
                 </div>
+                
+                <!-- Player audio moderno -->
+                <div class="audio-player">
+                    <div class="player-controls">
+                        <div class="song-info">
+                            <span class="song-title">vendetta!</span>
+                            <span class="song-artist"></span>
+                        </div>
+                        <div class="progress-area">
+                            <div class="progress-bar">
+                                <audio id="main-audio" src="assets/song.flac"></audio>
+                            </div>
+                            <div class="song-timer">
+                                <span class="current-time">0:00</span>
+                                <span class="max-duration">0:00</span>
+                            </div>
+                        </div>
+                        <div class="controls">
+                            <i id="repeat-plist" class="fas fa-repeat"></i>
+                            <i id="prev" class="fas fa-step-backward"></i>
+                            <div class="play-pause">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <i id="next" class="fas fa-step-forward"></i>
+                            <i id="more-music" class="fas fa-list"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="view-counter">
                 <span><i class="fas fa-eye"></i> 10k</span>
+            </div>
+            
+            <!-- Volume control -->
+            <div class="volume-control">
+                <i class="fas fa-volume-up" id="volume-icon"></i>
+                <div class="volume-slider">
+                    <div class="volume-bar"></div>
+                </div>
             </div>
         </div>
     </div>
